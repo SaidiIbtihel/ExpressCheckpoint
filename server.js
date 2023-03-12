@@ -17,6 +17,21 @@ const authorized = (req, res, next) => {
   }
 };
 
+const getDate = (req, res, next) => {
+  console.log("Time:", new Date());
+  if (
+    new Date().getDay() > 0 &&
+    new Date().getDay() < 6 &&
+    new Date().getHours() >= 9 &&
+    new Date().getHours() <= 17
+  ) {
+    console.log(" Welcome");
+    next();
+  } else {
+    console.log("U can't use this application now ");
+  }
+};
+app.use(getDate);
 // Middlewares
 app.use(authorized);
 
